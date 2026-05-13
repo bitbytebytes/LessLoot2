@@ -1,0 +1,15 @@
+[mod]
+name="Less Loot 2"
+id="less-loot-2"
+version="1.0.0"
+author="bitbytebytes"
+
+[autoload]
+LessLoot2="res://mods/LessLoot2/Main.gd"
+
+[hooks]
+"res://Scripts/LootContainer.gd" = "FillBuckets, GenerateLoot"
+"res://Scripts/LootSimulation.gd" = "FillBuckets, GenerateLoot"
+
+[updates]
+modworkshop=00000
