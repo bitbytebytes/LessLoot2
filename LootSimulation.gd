@@ -34,9 +34,34 @@ func on_generate_loot() -> void:
     var _lib = Engine.get_meta("RTVModLib")
     var _caller = _lib._caller
     
-    _caller.rarityRoll = randi_range(1, 100)
-    if _caller.joker: _caller.rarityRoll = 100
-    
-    
+    _caller.rarityRoll = randi_range(1, 200)
+    if _caller.joker: _caller.rarityRoll = 200
+
+    if _caller.rarityRoll == 1:
+        if _caller.legendaryBucket.size() != 0:
+            _caller.loot.append(_caller.legendaryBucket.pick_random())
+
+    elif _caller.rarityRoll <= 5:
+        if _caller.rareBucket.size() != 0:
+            for pick in randi_range(1, 2):
+                _caller.loot.append(_caller.rareBucket.pick_random())
+
+    elif _caller.rarityRoll <= 25:
+        if _caller.commonBucket.size() != 0:
+            for pick in randi_range(1, 4):
+                _caller.loot.append(_caller.commonBucket.pick_random())
+
+    elif _caller.rarityRoll == 200:
+        if _caller.legendaryBucket.size() != 0:
+            for pick in 2:
+                _caller.loot.append(_caller.legendaryBucket.pick_random())
+                
+        if _caller.rareBucket.size() != 0:
+            for pick in randi_range(2, 4):
+                _caller.loot.append(_caller.rareBucket.pick_random())
+
+        if _caller.commonBucket.size() != 0:
+            for pick in randi_range(2, 4):
+                _caller.loot.append(_caller.commonBucket.pick_random())
     
     _lib.skip_super()
